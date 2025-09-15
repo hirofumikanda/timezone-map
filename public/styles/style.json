@@ -1,0 +1,66 @@
+{
+  "version": 8,
+  "sources": {
+    "country": {
+      "type": "vector",
+      "url": "pmtiles:///timezone-map/data/country.pmtiles",
+      "minzoom": 0,
+      "maxzoom": 8,
+      "attribution": "<a href='https://www.naturalearthdata.com/downloads/10m-cultural-vectors/' target='_blank'>Made with Natural Earth</a>"
+    },
+    "country_label": {
+      "type": "geojson",
+      "data": "data/country_label.geojson"
+    },
+    "timezone": {
+      "type": "geojson",
+      "data": "data/timezone.geojson"
+    }
+  },
+  "glyphs": "font/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "country",
+      "type": "fill",
+      "source": "country",
+      "source-layer": "country",
+      "paint": {
+        "fill-color": "rgb(255, 255, 255)",
+        "fill-opacity": 0.8,
+        "fill-outline-color": "#000"
+      }
+    },
+    {
+      "id": "country-label",
+      "type": "symbol",
+      "source": "country_label",
+      "layout": {
+        "text-field": ["get", "name"],
+        "text-size": 8,
+        "text-font": ["Noto Sans Regular"],
+        "text-anchor": "center",
+        "text-justify": "center"
+      },
+      "paint": {
+        "text-color": "#000000",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 1,
+        "text-halo-blur": 0.5
+      },
+      "minzoom": 0
+    },
+    {
+      "id": "timezone-fill",
+      "type": "fill",
+      "source": "timezone",
+      "layout": {
+        "visibility": "none"
+      },
+      "paint": {
+        "fill-color": "#3366cc",
+        "fill-opacity": 0.5
+      },
+      "filter": ["==", ["get", "UTC_offset"], ""]
+    }
+  ]
+}
