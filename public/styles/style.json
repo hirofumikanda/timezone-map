@@ -10,11 +10,13 @@
     },
     "country_label": {
       "type": "geojson",
-      "data": "data/country_label.geojson"
+      "data": "data/country_label.geojson",
+      "attribution": "<a href='https://www.naturalearthdata.com/downloads/10m-cultural-vectors/' target='_blank'>Made with Natural Earth</a>"
     },
     "timezone": {
       "type": "geojson",
-      "data": "data/timezone.geojson"
+      "data": "data/timezone.geojson",
+      "attribution": "<a href='https://en.wikipedia.org/wiki/List_of_tz_database_time_zones' target='_blank'>List of tz database time zones(Wikipedia)</a> | <a href='https://user.numazu-ct.ac.jp/~tsato/webmap/timezone/' target='_blank'>沼津高専</a>"
     }
   },
   "glyphs": "font/{fontstack}/{range}.pbf",

@@ -5,6 +5,7 @@
 ## 機能
 
 - **インタラクティブなタイムゾーン選択**: プルダウンメニューから37種類のタイムゾーンオフセットを選択可能
+- **地図クリックでタイムゾーン参照**: 地図上でクリックすると、クリック地点のタイムゾーンを選択状態に変更
 - **視覚的なタイムゾーンハイライト**: 選択されたタイムゾーンがマップ上で色付きポリゴンでハイライト表示
 - **経線表示**: 15度ごとの経度線と理論的な時差ラベルを表示
 - **レスポンシブデザイン**: フローティングコントロール付きのフルスクリーンマップインターフェース
@@ -51,9 +52,9 @@ npm run dev
 
 ## データソース
 
-- **タイムゾーン境界**: UTC_offsetプロパティ付きGeoJSON
-- **国境**: PMTilesベクタータイル
-- **国名ラベル**: GeoJSONポイントデータ
+- **タイムゾーン境界**: UTC_offsetプロパティ付きGeoJSON（出典：[世界の標準時子午線（沼津高専）](https://user.numazu-ct.ac.jp/~tsato/webmap/timezone/)）
+- **国境**: PMTilesベクタータイル（出典：[Natural Earth（Admin 0 – Countries）](https://www.naturalearthdata.com/)）
+- **国名ラベル**: GeoJSONポイントデータ（出典：[Natural Earth（Admin 0 – Countries）](https://www.naturalearthdata.com/)）
 
 ## プロジェクト構造
 
