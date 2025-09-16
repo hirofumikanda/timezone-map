@@ -54,13 +54,17 @@
       "type": "fill",
       "source": "timezone",
       "layout": {
-        "visibility": "none"
+        "visibility": "visible"
       },
       "paint": {
         "fill-color": "#3366cc",
-        "fill-opacity": 0.5
-      },
-      "filter": ["==", ["get", "UTC_offset"], ""]
+        "fill-opacity": [
+          "case",
+          ["==", ["get", "UTC_offset"], ""],
+          0,
+          0.5
+        ]
+      }
     }
   ]
 }

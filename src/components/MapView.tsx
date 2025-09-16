@@ -157,6 +157,28 @@ const MapView = () => {
         }
       });
 
+      // timezone-fillレイヤーのクリックイベントを追加
+      map.on("click", "timezone-fill", (e) => {
+        console.log("Timezone clicked:", e.features); // デバッグ用
+        if (e.features && e.features.length > 0) {
+          const feature = e.features[0];
+          const utcOffset = feature.properties?.UTC_offset;
+          console.log("UTC Offset:", utcOffset); // デバッグ用
+          if (utcOffset && timezoneOptions.includes(utcOffset)) {
+            setSelectedTimezone(utcOffset);
+          }
+        }
+      });
+
+      // マウスカーソルをpointerに変更
+      map.on("mouseenter", "timezone-fill", () => {
+        map.getCanvas().style.cursor = "pointer";
+      });
+
+      map.on("mouseleave", "timezone-fill", () => {
+        map.getCanvas().style.cursor = "";
+      });
+
       setMapLoaded(true);
     });
 
@@ -168,14 +190,13 @@ const MapView = () => {
   // タイムゾーン選択時の処理
   useEffect(() => {
     if (mapRef.current && mapLoaded) {
-      if (selectedTimezone) {
-        // 選択されたタイムゾーンに対応するポリゴンを表示
-        mapRef.current.setFilter("timezone-fill", ["==", ["get", "UTC_offset"], selectedTimezone]);
-        mapRef.current.setLayoutProperty("timezone-fill", "visibility", "visible");
-      } else {
-        // 何も選択されていない場合は非表示
-        mapRef.current.setLayoutProperty("timezone-fill", "visibility", "none");
-      }
+      // fill-opacityを動的に更新して選択されたタイムゾーンのみ表示
+      mapRef.current.setPaintProperty("timezone-fill", "fill-opacity", [
+        "case",
+        ["==", ["get", "UTC_offset"], selectedTimezone || ""],
+        selectedTimezone ? 0.5 : 0,
+        0
+      ]);
     }
   }, [selectedTimezone, mapLoaded]);
 
