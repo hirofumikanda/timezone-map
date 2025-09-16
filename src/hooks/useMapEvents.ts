@@ -12,11 +12,9 @@ export const useMapEvents = (
 
     // timezone-fillレイヤーのクリックイベント
     const handleTimezoneClick = (e: maplibregl.MapLayerMouseEvent) => {
-      console.log("Timezone clicked:", e.features);
       if (e.features && e.features.length > 0) {
         const feature = e.features[0];
         const utcOffset = feature.properties?.UTC_offset;
-        console.log("UTC Offset:", utcOffset);
         if (utcOffset && timezoneOptions.includes(utcOffset)) {
           setSelectedTimezone(utcOffset);
         }
